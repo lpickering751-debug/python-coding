@@ -37,16 +37,25 @@ def playGame():
                 playing = False
 
         else:
+            currentTime = time.time()
             turn = random.choice(players)
             num = str(input(""))
+            timeTaken = time.time() - currentTime
             if num.lower() != main_list[currentIndex]:
                 print("INCORRECT")
                 strikes += 1
-                if strikes > 3:
+                print(f"You have {3 - strikes} strikes left.")
+                if strikes >= 3:
                     print("You're Out!")
                     playing = False
                 elif currentIndex > len(main_list):
                     playing = False
+            elif timeTaken > 10:
+                print("You took too long.")
+                strikes += 1
+                print(f"You have {3 - strikes} strikes left.")
+
+
             currentIndex += 1
 
 
